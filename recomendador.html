@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recomendador Palaspadel</title>
+    <link rel="shortcut icon" type="image/ico" href="images/logo/logo.ico" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="bootstrap/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      #logo {
+        max-height: 15vh;
+      }
+
+      main {
+        min-height: 75vh;
+      }
+
+      i {
+        color: #31d2f2;
+        font-size: 30px;
+      }
+
+      span {
+        width: fit-content;
+      }
+
+      .dropdown-menu li:hover {
+        background-color: aquamarine;
+      }
+
+      .bg {
+        background-image: url("images/carrusel/recomendaciones_carousel.jpg");
+      }
+    </style>
+  </head>
+
+  <body class="vh-100 bg-info bg-gradient bg-opacity-25">
+    <header class="sticky-top border-bottom border-secondary border-4">
+      <!--para decir que es menu usamos la clase navbar, con navbar-expand-lg sea menor se colapse   -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+        <!-- LOGO  -->
+        <div
+          class="container-fluid justify-content-center justify-content-lg-start"
+        >
+          <!-- creamos un contenedor de tipo fluid -->
+          <a
+            class="navbar-brand d-flex align-items-center m-0"
+            href="index.html"
+          >
+            <img
+              src="images/logo/logo.png"
+              alt="logo"
+              id="logo"
+              class="img-fluid"
+            />
+            <span class="display-3 text-white d-none d-sm-block"
+              >Palaspadel</span
+            >
+          </a>
+        </div>
+
+        <div class="container-fluid">
+          <!-- boton para cuando el display sea menor -->
+          <button
+            class="navbar-toggler mt-3 mb-1"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu"
+            aria-controls="menu"
+            aria-expanded="false"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- div todos los elementos, el id lo usaremos para refernciarlo y así llamoarlo desde el boton -->
+          <div
+            class="collapse navbar-collapse justify-content-around d-lg-flex align-items-center"
+            id="menu"
+          >
+            <ul class="navbar-nav text-center">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <span>Inicio</span>
+                </a>
+                <hr class="d-lg-none border border-info border-1 opacity-50" />
+              </li>
+
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href=""
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  id="menu_desplegable"
+                >
+                  <span>Pádel</span>
+                </a>
+
+                <!-- clase dropdown menu el atribito sirve para nombrarlo y así llamarlo, actua como un id  -->
+                <ul
+                  class="dropdown-menu p-0"
+                  aria-labelledby="menu_desplegable"
+                >
+                  <li class="dropdown-item border-bottom border-dark border-2">
+                    <a class="nav-link" href="palas.html">
+                      <span class="text-dark">Palas</span>
+                    </a>
+                  </li>
+                  <!-- con la clase nav-link cambia el formato del enlace -->
+                  <li
+                    class="dropdown-item border-bottom border-dark border-2 active"
+                  >
+                    <a class="nav-link" href="recomendador.html">
+                      <span class="text-dark">Recomendador</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item border-bottom border-dark border-2">
+                    <a class="nav-link" href="insertar.html">
+                      <span class="text-dark">Insertar palas</span>
+                    </a>
+                  </li>
+                </ul>
+                <hr class="d-lg-none border border-info border-1 opacity-50" />
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="usuarios.html">
+                  <span>Usuarios</span>
+                </a>
+                <hr class="d-lg-none border border-info border-1 opacity-50" />
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">
+                  <span>About us</span>
+                </a>
+                <hr class="d-lg-none border border-info border-1 opacity-50" />
+              </li>
+            </ul>
+
+            <form action="get" class="d-flex">
+              <input
+                type="search"
+                class="form-control me-2 text-dark-emphasis bg-info-subtle border border-dark-subtle"
+                name="palnom"
+                placeholder="Buscar una pala ..."
+              />
+              <button type="button" class="btn btn-info" onclick="buscarPala()">
+                Buscar
+              </button>
+            </form>
+          </div>
+          <div class="d-flex align-content-end">
+            <a class="" href="login.html">
+              <i class="bi bi-person-fill"> </i>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- breadcrumb -->
+    <nav aria-label="breadcrumb" class="m-2 d-none d-md-block">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Recomendador</li>
+      </ol>
+    </nav>
+
+    <!-- RECOMENDADOR -->
+
+    <main class="container py-4">
+      <h2 class="text-center">Encuentra tu pala ideal</h2>
+      <p class="text-center">
+        Responde las siguientes preguntas para recibir una recomendación
+        personalizada.
+      </p>
+
+      <form id="recomendador-form" class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">¿Qué tipo de jugador eres?</label>
+          <select class="form-select" name="nivel">
+            <option value="Principiante">Principiante</option>
+            <option value="Intermedio">Intermedio</option>
+            <option value="Avanzado">Avanzado</option>
+            <option value="Pro">Pro</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">¿Qué prefieres mejorar?</label>
+          <select class="form-select" name="mejora">
+            <option value="Control">Control</option>
+            <option value="Potencia">Potencia</option>
+            <option value="Equilibrio">Equilibrio</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label"
+            >¿Prefieres una pala con mayor manejabilidad o potencia?</label
+          >
+          <select class="form-select" name="preferencia">
+            <option value="Ligera">Ligera y manejable</option>
+            <option value="Equilibrada">Equilibrada</option>
+            <option value="Pesada">Pesada y potente</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label"
+            >¿Tienes preferencia por alguna marca?</label
+          >
+          <select class="form-select" name="marca">
+            <option value="Cualquiera">Cualquiera</option>
+            <option value="Bullpadel">Bullpadel</option>
+            <option value="Nox">Nox</option>
+            <option value="Adidas">Adidas</option>
+            <option value="Head">Head</option>
+          </select>
+        </div>
+
+        <div class="col-12 text-center mt-3">
+          <button
+            type="button"
+            class="btn btn-info"
+            onclick="buscarRecomendacion()"
+          >
+            Obtener Recomendación
+          </button>
+        </div>
+      </form>
+
+      <div id="resultado" class="mt-4 text-center"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-5 p-2 bg-dark border-top border-secondary border-4">
+      <div class="container-fluid">
+        <div
+          class="row row-cols-md-2 row-cols-lg-3 row-gap-3 justify-content-around align-items-center text-center text-white"
+        >
+          <p class="col-sm-12">Andrés Ochoa Bueno</p>
+          <p>&copy; 2025 Palaspadel - Todos los derechos reservados.</p>
+          <div class="d-flex justify-content-around">
+            <a
+              href="https://www.linkedin.com/in/Andr%C3%A9sOchoaBueno"
+              target="_blank"
+              class="text-decoration-none w-auto"
+            >
+              <i class="bi bi-linkedin">
+                <span class="d-none d-md-inline text-white">LinkedIn</span>
+              </i>
+            </a>
+            <a
+              href="https://github.com/obandresdev88/bs-palaspadel.git"
+              target="_blank"
+              class="text-decoration-none w-auto"
+            >
+              <i class="bi bi-github">
+                <span class="d-none d-md-inline text-white">GitHub</span>
+              </i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function buscarRecomendacion() {
+        const form = document.getElementById("recomendador-form");
+        const formData = new FormData(form);
+        const resultado = document.getElementById("resultado");
+
+        resultado.innerHTML =
+          "<p class='fw-bold'>Tu pala recomendada es: <span class='text-primary'>Bullpadel Vertex 03</span></p>";
+      }
+    </script>
+
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+  </body>
+</html>

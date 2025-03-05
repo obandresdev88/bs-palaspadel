@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Palaspadel</title>
+    <link rel="shortcut icon" type="image/ico" href="images/logo/logo.ico" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="bootstrap/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+
+    <style>
+      body {
+        scroll-behavior: smooth;
+      }
+
+      #logo {
+        max-height: 15vh;
+      }
+
+      main {
+        min-height: 75vh;
+      }
+
+      i {
+        color: #31d2f2;
+        font-size: 30px;
+      }
+
+      span {
+        width: fit-content;
+      }
+
+      .dropdown-menu li:hover {
+        background-color: aquamarine;
+      }
+
+      /* Propias del index */
+      .c-item {
+        height: 65vh;
+      }
+
+      .c-image {
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.5);
+      }
+    </style>
+  </head>
+
+  <body class="vh-100 bg-info bg-gradient bg-opacity-25">
+    <header class="sticky-top border-bottom border-secondary border-4">
+      <!--para decir que es menu usamos la clase navbar, con navbar-expand-lg sea menor se colapse   -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+        <div
+          class="container-fluid justify-content-center justify-content-lg-start"
+        >
+          <!-- creamos un contenedor de tipo fluid -->
+          <a
+            class="navbar-brand d-flex align-items-center m-0"
+            href="index.html"
+          >
+            <img
+              src="images/logo/logo.png"
+              alt="logo"
+              id="logo"
+              class="img-fluid"
+            />
+            <span class="display-3 text-white d-none d-sm-block"
+              >Palaspadel</span
+            >
+          </a>
+        </div>
+
+        <div class="container-fluid">
+          <!-- boton para cuando el display sea menor -->
+          <button
+            class="navbar-toggler mt-3 mb-1"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu"
+            aria-controls="menu"
+            aria-expanded="false"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- div todos los elementos, el id lo usaremos para refernciarlo y así llamoarlo desde el boton -->
+          <div
+            class="collapse navbar-collapse justify-content-around d-lg-flex align-items-center"
+            id="menu"
+          >
+            <ul class="navbar-nav text-center">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">
+                  <span>Inicio</span>
+                </a>
+                <hr class="d-lg-none border border-info border-1 opacity-50" />
+              </li>
+
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href=""
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  id="menu_desplegable"
+                >
+                  <span>Pádel</span>
+                </a>
+
+                <!-- clase dropdown menu el atribito sirve para nombrarlo y así llamarlo, actua como un id  -->
+                <ul
+                  class="dropdown-menu p-0"
+                  aria-labelledby="menu_desplegable"
+                >
+                  <li class="dropdown-item border-bottom border-dark border-2">
+                    <a class="nav-link" href="palas.html">
+                      <span class="text-dark">Palas</span>
+                    </a>
+                  </li>
+                  <!-- con la clase nav-link cambia el formato del enlace -->
+                  <li class="dropdown-item border-bottom border-dark border-2">
+                    <a class="nav-link" href="recomendador.html">
+                      <span class="text-dark">Recomendador</span>
+                    </a>
+                  </li>
+                  <li class="dropdown-item border-bottom border-dark border-2">
+                    <a class="nav-link" href="insertar.html">
+                      <span class="text-dark">Insertar palas</span>
+                    </a>
+                  </li>
+                </ul>
+                <hr class="d-lg-none border border-info border-1 opacity-50" />
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="usuarios.html">
+                  <span>Usuarios</span>
+                </a>
+                <hr class="d-lg-none border border-info border-1 opacity-50" />
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">
+                  <span>About us</span>
+                </a>
+                <hr class="d-lg-none border border-info border-1 opacity-50" />
+              </li>
+            </ul>
+
+            <form action="get" class="d-flex">
+              <input
+                type="search"
+                class="form-control me-2 text-dark-emphasis bg-info-subtle border border-dark-subtle"
+                name="palnom"
+                placeholder="Buscar una pala ..."
+              />
+              <button type="button" class="btn btn-info" onclick="buscarPala()">
+                Buscar
+              </button>
+            </form>
+          </div>
+          <div class="d-flex align-content-end">
+            <a class="" href="login.html">
+              <i class="bi bi-person-fill"> </i>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+
+    <main>
+      <!-- breadcrumb -->
+      <section>
+        <nav aria-label="breadcrumb" class="m-2 d-none d-md-block">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+          </ol>
+        </nav>
+      </section>
+
+      <!-- carrusel -->
+      <section>
+        <h3 class="text-center p-1 d-none d-md-block">
+          Principales secciones de la página
+        </h3>
+
+        <div id="carousel" class="carousel slide mt-2" data-bs-ride="carousel">
+          <!-- slide para que se deslice -->
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carousel"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carousel"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carousel"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item c-item active" data-bs-interval="3000">
+              <img
+                src="images/carrusel/palas_carousel.jpg"
+                class="d-lg-block w-100 c-image img-fluid"
+                alt="palas carrusel"
+              />
+              <div class="carousel-caption d-block top-50 m-0">
+                <p class="fs-3">Visita nuestra sección de palas.</p>
+                <a href="palas.html" class="btn btn-info">
+                  Descubre las palas</a
+                >
+              </div>
+            </div>
+            <div class="carousel-item c-item" data-bs-interval="3000">
+              <img
+                src="images/carrusel/recomendaciones_carousel.jpg"
+                class="d-block w-100 c-image img-fluid"
+                alt="jugadores carrusel"
+              />
+              <div class="carousel-caption d-block top-50 m-0">
+                <p class="fs-3">Conoce tu pala ideal.</p>
+                <a href="recomendador.html" class="btn btn-info"
+                  >Inicia Recomendador</a
+                >
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="d-block mt-5 p-2 bg-dark border-top border-secondary border-4"
+    >
+      <div class="container-fluid">
+        <div
+          class="row row-cols-md-2 row-cols-lg-3 row-gap-3 justify-content-around align-items-center text-center text-white"
+        >
+          <p class="col-sm-12">Andrés Ochoa Bueno</p>
+          <p>&copy; 2025 Palaspadel - Todos los derechos reservados.</p>
+          <div class="d-flex justify-content-around">
+            <a
+              href="https://www.linkedin.com/in/Andr%C3%A9sOchoaBueno"
+              target="_blank"
+              class="text-decoration-none w-auto"
+            >
+              <i class="bi bi-linkedin">
+                <span class="d-none d-md-inline text-white">LinkedIn</span>
+              </i>
+            </a>
+            <a
+              href="https://github.com/obandresdev88/bs-palaspadel.git"
+              target="_blank"
+              class="text-decoration-none w-auto"
+            >
+              <i class="bi bi-github">
+                <span class="d-none d-md-inline text-white">GitHub</span>
+              </i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+  </body>
+</html>
