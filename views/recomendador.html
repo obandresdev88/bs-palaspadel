@@ -4,21 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About us</title>
-    <link rel="shortcut icon" type="image/ico" href="images/logo/logo.ico" />
+    <title>Recomendador Palaspadel</title>
+    <link rel="shortcut icon" type="image/ico" href="/assets/images/logo/logo.ico" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="bootstrap/css/bootstrap.min.css"
+      href="/assets/css/bootstrap/css/bootstrap.min.css"
     />
     <link
       rel="stylesheet"
       type="text/css"
-      href="bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css"
+      href="/assets/css/bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css"
     />
-
     <style>
-      body {
+      html {
         scroll-behavior: smooth;
       }
 
@@ -43,15 +42,8 @@
         background-color: aquamarine;
       }
 
-      /* Propias del index */
-      .c-item {
-        height: 65vh;
-      }
-
-      .c-image {
-        height: 100%;
-        object-fit: cover;
-        filter: brightness(0.5);
+      .bg {
+        background-image: url("images/carrusel/recomendaciones_carousel.jpg");
       }
     </style>
   </head>
@@ -60,16 +52,17 @@
     <header class="sticky-top border-bottom border-secondary border-4">
       <!--para decir que es menu usamos la clase navbar, con navbar-expand-lg sea menor se colapse   -->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+        <!-- LOGO  -->
         <div
           class="container-fluid justify-content-center justify-content-lg-start"
         >
           <!-- creamos un contenedor de tipo fluid -->
           <a
             class="navbar-brand d-flex align-items-center m-0"
-            href="index.html"
+            href="/index.html"
           >
             <img
-              src="images/logo/logo.png"
+              src="/assets/images/logo/logo.png"
               alt="logo"
               id="logo"
               class="img-fluid"
@@ -100,7 +93,7 @@
           >
             <ul class="navbar-nav text-center">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/index.html">
                   <span>Inicio</span>
                 </a>
                 <hr class="d-lg-none border border-info border-1 opacity-50" />
@@ -124,18 +117,20 @@
                   aria-labelledby="menu_desplegable"
                 >
                   <li class="dropdown-item border-bottom border-dark border-2">
-                    <a class="nav-link" href="palas.html">
+                    <a class="nav-link" href="/views/palas.html">
                       <span class="text-dark">Palas</span>
                     </a>
                   </li>
                   <!-- con la clase nav-link cambia el formato del enlace -->
-                  <li class="dropdown-item border-bottom border-dark border-2">
-                    <a class="nav-link" href="recomendador.html">
+                  <li
+                    class="dropdown-item border-bottom border-dark border-2 active"
+                  >
+                    <a class="nav-link" href="/views/recomendador.html">
                       <span class="text-dark">Recomendador</span>
                     </a>
                   </li>
                   <li class="dropdown-item border-bottom border-dark border-2">
-                    <a class="nav-link" href="insertar.html">
+                    <a class="nav-link" href="/views/insertar.html">
                       <span class="text-dark">Insertar palas</span>
                     </a>
                   </li>
@@ -144,14 +139,14 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="usuarios.html">
+                <a class="nav-link" href="/views/usuarios.html">
                   <span>Usuarios</span>
                 </a>
                 <hr class="d-lg-none border border-info border-1 opacity-50" />
               </li>
 
               <li class="nav-item">
-                <a class="nav-link active" href="about.html">
+                <a class="nav-link" href="/views/about.html">
                   <span>About us</span>
                 </a>
                 <hr class="d-lg-none border border-info border-1 opacity-50" />
@@ -171,62 +166,91 @@
             </form>
           </div>
           <div class="d-flex align-content-end">
-            <a class="" href="login.html">
+            <a class="" href="/views/login.html">
               <i class="bi bi-person-fill"> </i>
             </a>
           </div>
         </div>
       </nav>
     </header>
-    <main>
-      <!-- breadcrumb -->
-      <section>
-        <nav aria-label="breadcrumb" class="m-2 d-none d-md-block">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-          </ol>
-        </nav>
-      </section>
 
-      <!-- SOBRE NOSOSTROS -->
-      <section class="text-center">
-        <div
-          class="bg-secondary text-white w-50 mx-auto row row-cols-1 row-cols-md-3 g-4 p-3 rounded mb-2.5"
-        >
-          <p class="col text-start">
-            Mi nombre es Andrés y este proyecto es parte de mi trabajo de fin de
-            grado. En este proyecto, he aplicado los conocimientos adquiridos a
-            lo largo del curso de Desarrollo de Aplicaciones Web.
-          </p>
-          <p class="col text-start">
-            Durante el desarrollo de esta página, he utilizado diversas
-            tecnologías y herramientas.
-          </p>
-          <p class="col text-start">
-            Para la parte del front he usado Bootstrap y para el back
-            Springboot, el cual aún requiere más práctica para dominarlo.
-          </p>
-          <p class="col text-start">
-            Además, he adjuntado una memoria al proyecto donde se detallan las
-            fuentes de inspiración, componentes utilizados e información
-            relevante.
-          </p>
-          <div class="col d-flex align-items-end overflow-hidden rounded">
-            <img
-              src="images/logo/logo-oscuro.png"
-              alt="pala"
-              class="img-fluid"
-            />
-          </div>
+    <!-- breadcrumb -->
+    <nav aria-label="breadcrumb" class="m-2 d-none d-md-block">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Recomendador</li>
+      </ol>
+    </nav>
+
+    <!-- RECOMENDADOR -->
+
+    <main class="container py-4">
+      <h2 class="text-center">Encuentra tu pala ideal</h2>
+      <p class="text-center">
+        Responde las siguientes preguntas para recibir una recomendación
+        personalizada.
+      </p>
+
+      <form id="recomendador-form" class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">¿Qué tipo de jugador eres?</label>
+          <select class="form-select" name="nivel">
+            <option value="Principiante">Principiante</option>
+            <option value="Intermedio">Intermedio</option>
+            <option value="Avanzado">Avanzado</option>
+            <option value="Pro">Pro</option>
+          </select>
         </div>
-        <label for="ctrl" class="ctrl"></label>
-      </section>
+
+        <div class="col-md-6">
+          <label class="form-label">¿Qué prefieres mejorar?</label>
+          <select class="form-select" name="mejora">
+            <option value="Control">Control</option>
+            <option value="Potencia">Potencia</option>
+            <option value="Equilibrio">Equilibrio</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label"
+            >¿Prefieres una pala con mayor manejabilidad o potencia?</label
+          >
+          <select class="form-select" name="preferencia">
+            <option value="Ligera">Ligera y manejable</option>
+            <option value="Equilibrada">Equilibrada</option>
+            <option value="Pesada">Pesada y potente</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label"
+            >¿Tienes preferencia por alguna marca?</label
+          >
+          <select class="form-select" name="marca">
+            <option value="Cualquiera">Cualquiera</option>
+            <option value="Bullpadel">Bullpadel</option>
+            <option value="Nox">Nox</option>
+            <option value="Adidas">Adidas</option>
+            <option value="Head">Head</option>
+          </select>
+        </div>
+
+        <div class="col-12 text-center mt-3">
+          <button
+            type="button"
+            class="btn btn-info"
+            onclick="buscarRecomendacion()"
+          >
+            Obtener Recomendación
+          </button>
+        </div>
+      </form>
+
+      <div id="resultado" class="mt-4 text-center"></div>
     </main>
 
     <!-- Footer -->
-    <footer
-      class="d-block mt-5 p-2 bg-dark border-top border-secondary border-4"
-    >
+    <footer class="mt-5 p-2 bg-dark border-top border-secondary border-4">
       <div class="container-fluid">
         <div
           class="row row-cols-md-2 row-cols-lg-3 row-gap-3 justify-content-around align-items-center text-center text-white"
@@ -257,6 +281,17 @@
       </div>
     </footer>
 
-    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+    <script>
+      function buscarRecomendacion() {
+        const form = document.getElementById("recomendador-form");
+        const formData = new FormData(form);
+        const resultado = document.getElementById("resultado");
+
+        resultado.innerHTML =
+          "<p class='fw-bold'>Tu pala recomendada es: <span class='text-primary'>Bullpadel Vertex 03</span></p>";
+      }
+    </script>
+
+    <script src="/assets/css/bootstrap/js/bootstrap.bundle.js"></script>
   </body>
 </html>

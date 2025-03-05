@@ -4,21 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Usuarios</title>
-    <link rel="shortcut icon" type="image/ico" href="images/logo/logo.ico" />
+    <title>About us</title>
+    <link rel="shortcut icon" type="image/ico" href="/assets/images/logo/logo.ico" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="bootstrap/css/bootstrap.min.css"
+      href="/assets/css/bootstrap/css/bootstrap.min.css"
     />
     <link
       rel="stylesheet"
       type="text/css"
-      href="bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css"
+      href="/assets/css/bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css"
     />
 
     <style>
-      html {
+      body {
         scroll-behavior: smooth;
       }
 
@@ -26,13 +26,13 @@
         max-height: 15vh;
       }
 
+      main {
+        min-height: 75vh;
+      }
+
       i {
         color: #31d2f2;
         font-size: 30px;
-      }
-
-      main {
-        min-height: 75vh;
       }
 
       span {
@@ -43,10 +43,15 @@
         background-color: aquamarine;
       }
 
-      td img {
-        position: relative;
-        height: 20px;
-        float: right;
+      /* Propias del index */
+      .c-item {
+        height: 65vh;
+      }
+
+      .c-image {
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.5);
       }
     </style>
   </head>
@@ -61,10 +66,10 @@
           <!-- creamos un contenedor de tipo fluid -->
           <a
             class="navbar-brand d-flex align-items-center m-0"
-            href="index.html"
+            href="/index.html"
           >
             <img
-              src="images/logo/logo.png"
+              src="/assets/images/logo/logo.png"
               alt="logo"
               id="logo"
               class="img-fluid"
@@ -95,7 +100,7 @@
           >
             <ul class="navbar-nav text-center">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/index.html">
                   <span>Inicio</span>
                 </a>
                 <hr class="d-lg-none border border-info border-1 opacity-50" />
@@ -119,18 +124,18 @@
                   aria-labelledby="menu_desplegable"
                 >
                   <li class="dropdown-item border-bottom border-dark border-2">
-                    <a class="nav-link" href="palas.html">
+                    <a class="nav-link" href="/views/palas.html">
                       <span class="text-dark">Palas</span>
                     </a>
                   </li>
                   <!-- con la clase nav-link cambia el formato del enlace -->
                   <li class="dropdown-item border-bottom border-dark border-2">
-                    <a class="nav-link" href="recomendador.html">
+                    <a class="nav-link" href="/views/recomendador.html">
                       <span class="text-dark">Recomendador</span>
                     </a>
                   </li>
                   <li class="dropdown-item border-bottom border-dark border-2">
-                    <a class="nav-link" href="insertar.html">
+                    <a class="nav-link" href="/views/insertar.html">
                       <span class="text-dark">Insertar palas</span>
                     </a>
                   </li>
@@ -139,14 +144,14 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link active" href="usuarios.html">
+                <a class="nav-link" href="/views/usuarios.html">
                   <span>Usuarios</span>
                 </a>
                 <hr class="d-lg-none border border-info border-1 opacity-50" />
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="about.html">
+                <a class="nav-link active" href="/views/about.html">
                   <span>About us</span>
                 </a>
                 <hr class="d-lg-none border border-info border-1 opacity-50" />
@@ -166,154 +171,62 @@
             </form>
           </div>
           <div class="d-flex align-content-end">
-            <a class="" href="login.html">
+            <a class="" href="/views/login.html">
               <i class="bi bi-person-fill"> </i>
             </a>
           </div>
         </div>
       </nav>
     </header>
-
     <main>
       <!-- breadcrumb -->
-      <nav aria-label="breadcrumb" class="m-2 d-none d-md-block">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
-        </ol>
-      </nav>
-
-      <!-- tabla USUARIOS -->
       <section>
-        <!-- table-struped para que sea de tipo zebra, 
-                table-hover para que anime cuando pasamos el ratón por encima, 
-                table-sm para reducir su paddin a la mitad en smartphones
-                table-group-divider para poner divisores y border-top-color para dar colores,
-                <caption>rankin masculion</caption> para ayudar a los usuarios en entender la tabla, si ponemos caption-top aparecerá arriba
-                table-responsive para tener scroll horizonta  en las tablas, podemos poner overflow-y: hidden para que no aparezca código vertical
-                          
-            -->
-        <h3 class="text-center p-1 mt-1 mt-md-0">Usuarios</h3>
-        <table
-          class="table table-striped table-hover table-info table-sm table-responsive-sm table-bordered w-75 mx-auto"
+        <nav aria-label="breadcrumb" class="m-2 d-none d-md-block">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+          </ol>
+        </nav>
+      </section>
+
+      <!-- SOBRE NOSOSTROS -->
+      <section class="text-center">
+        <div
+          class="bg-secondary text-white w-50 mx-auto row row-cols-1 row-cols-md-3 g-4 p-3 rounded mb-2.5"
         >
-          <caption class="fst-italic">
-            Usuarios
-          </caption>
-          <thead class="table-dark">
-            <tr>
-              <th scope="col">Posición</th>
-              <th scope="col">Jugador</th>
-              <th scope="col">Puntos</th>
-              <th scope="col">Nacionalidad</th>
-            </tr>
-          </thead>
-          <tbody class="table-group-divider">
-            <tr>
-              <th scope="row">1</th>
-              <td>Alejandro Galán Romo</td>
-              <td>13055</td>
-              <td>
-                España<img src="images/flags/es.png" alt=" bandera españa" />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Juan Lebrón Chincoa</td>
-              <td>13055</td>
-              <td>
-                España<img src="images/flags/es.png" alt=" bandera españa" />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Francisco Navarro Compán</td>
-              <td>7555</td>
-              <td>
-                España<img src="images/flags/es.png" alt=" bandera españa" />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Martín Dinenno</td>
-              <td>11910</td>
-              <td>
-                Argentina<img
-                  src="images/flags/ar.png"
-                  alt=" bandera Argentina"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Carlos Daniel Gutiérrez</td>
-              <td>9010</td>
-              <td>
-                Argentina<img
-                  src="images/flags/ar.png"
-                  alt=" bandera Argentina"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>Agustín Tapia</td>
-              <td>8770</td>
-              <td>
-                Argentina<img
-                  src="images/flags/ar.png"
-                  alt=" bandera Argentina"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">7</th>
-              <td>Ale Ruiz Granados</td>
-              <td>7555</td>
-              <td>
-                España<img src="images/flags/es.png" alt=" bandera españa" />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">8</th>
-              <td>Franco Stupaczuk</td>
-              <td>7515</td>
-              <td>
-                Argentina<img
-                  src="images/flags/ar.png"
-                  alt=" bandera Argentina"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">9</th>
-              <td>Fernando Belasteguín</td>
-              <td>6675</td>
-              <td>
-                Argentina<img
-                  src="images/flags/ar.png"
-                  alt=" bandera Argentina"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">10</th>
-              <td>Federico Chingoto</td>
-              <td>6515</td>
-              <td>
-                Argentina<img
-                  src="images/flags/ar.png"
-                  alt=" bandera Argentina"
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <p class="col text-start">
+            Mi nombre es Andrés y este proyecto es parte de mi trabajo de fin de
+            grado. En este proyecto, he aplicado los conocimientos adquiridos a
+            lo largo del curso de Desarrollo de Aplicaciones Web.
+          </p>
+          <p class="col text-start">
+            Durante el desarrollo de esta página, he utilizado diversas
+            tecnologías y herramientas.
+          </p>
+          <p class="col text-start">
+            Para la parte del front he usado Bootstrap y para el back
+            Springboot, el cual aún requiere más práctica para dominarlo.
+          </p>
+          <p class="col text-start">
+            Además, he adjuntado una memoria al proyecto donde se detallan las
+            fuentes de inspiración, componentes utilizados e información
+            relevante.
+          </p>
+          <div class="col d-flex align-items-end overflow-hidden rounded">
+            <img
+              src="/assets/images/logo/logo-oscuro.png"
+              alt="pala"
+              class="img-fluid"
+            />
+          </div>
+        </div>
+        <label for="ctrl" class="ctrl"></label>
       </section>
     </main>
 
     <!-- Footer -->
-    <footer class="mt-5 p-2 bg-dark border-top border-secondary border-4">
+    <footer
+      class="d-block mt-5 p-2 bg-dark border-top border-secondary border-4"
+    >
       <div class="container-fluid">
         <div
           class="row row-cols-md-2 row-cols-lg-3 row-gap-3 justify-content-around align-items-center text-center text-white"
@@ -344,6 +257,6 @@
       </div>
     </footer>
 
-    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/assets/css/bootstrap/js/bootstrap.bundle.js"></script>
   </body>
 </html>

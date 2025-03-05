@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inicio de sesión</title>
-    <link rel="shortcut icon" type="image/ico" href="images/logo/logo.ico" />
+    <title>Registro</title>
+    <link rel="shortcut icon" type="image/ico" href="/assets/images/logo/logo.ico" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="bootstrap/css/bootstrap.min.css"
+      href="/assets/css/bootstrap/css/bootstrap.min.css"
     />
     <link
       rel="stylesheet"
       type="text/css"
-      href="bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css"
+      href="/assets/css/bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css"
     />
 
     <style>
@@ -60,10 +60,10 @@
           <!-- creamos un contenedor de tipo fluid -->
           <a
             class="navbar-brand d-flex align-items-center m-0"
-            href="index.html"
+            href="/index.html"
           >
             <img
-              src="images/logo/logo.png"
+              src="/assets/images/logo/logo.png"
               alt="logo"
               id="logo"
               class="img-fluid"
@@ -94,7 +94,7 @@
           >
             <ul class="navbar-nav text-center">
               <li class="nav-item">
-                <a class="nav-link active" href="index.html">
+                <a class="nav-link active" href="/index.html">
                   <span>Inicio</span>
                 </a>
                 <hr class="d-lg-none border border-info border-1 opacity-50" />
@@ -118,18 +118,18 @@
                   aria-labelledby="menu_desplegable"
                 >
                   <li class="dropdown-item border-bottom border-dark border-2">
-                    <a class="nav-link" href="palas.html">
+                    <a class="nav-link" href="/views/palas.html">
                       <span class="text-dark">Palas</span>
                     </a>
                   </li>
                   <!-- con la clase nav-link cambia el formato del enlace -->
                   <li class="dropdown-item border-bottom border-dark border-2">
-                    <a class="nav-link" href="recomendador.html">
+                    <a class="nav-link" href="/views/recomendador.html">
                       <span class="text-dark">Recomendador</span>
                     </a>
                   </li>
                   <li class="dropdown-item border-bottom border-dark border-2">
-                    <a class="nav-link" href="insertar.html">
+                    <a class="nav-link" href="/views/insertar.html">
                       <span class="text-dark">Insertar palas</span>
                     </a>
                   </li>
@@ -138,14 +138,14 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="usuarios.html">
+                <a class="nav-link" href="/views/usuarios.html">
                   <span>Usuarios</span>
                 </a>
                 <hr class="d-lg-none border border-info border-1 opacity-50" />
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="about.html">
+                <a class="nav-link" href="/views/about.html">
                   <span>About us</span>
                 </a>
                 <hr class="d-lg-none border border-info border-1 opacity-50" />
@@ -165,7 +165,7 @@
             </form>
           </div>
           <div class="d-flex align-content-end">
-            <a class="" href="login.html">
+            <a class="" href="/views/login.html">
               <i class="bi bi-person-fill"> </i>
             </a>
           </div>
@@ -176,41 +176,46 @@
     <!-- breadcrumb -->
     <nav aria-label="breadcrumb" class="m-2 d-none d-md-block">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">
-          Inicio de sesión
-        </li>
+        <li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Registro</li>
       </ol>
     </nav>
 
     <!-- formulario -->
-
     <main>
       <section>
         <div
           class="container col-10 col-md-6 bg-warning rounded-5 shadow mt-1 mt-md-0"
         >
-          <!-- una columna será para la imagen de fondo y la otra para el formulario -->
           <div class="row">
-            <!--IMAGEN-->
+            <!-- IMAGEN -->
             <div
               class="col bg d-none d-md-block col-md-4 rounded-start-5"
             ></div>
-            <!-- le metemeos una imagen de fondo  -->
 
             <!-- FORMULARIO -->
             <div class="col p-1 p-sm-5">
-              <!-- contenido del formulario -->
               <div class="text-end mt-2">
-                <img src="images/logo/logo.png" alt="logo" width="48" />
+                <img src="/assets/images/logo/logo.png" alt="logo" width="48" />
               </div>
-              <h2 class="fw-bold text-center py-2">Iniciar sesión</h2>
-              <!-- con py-5 le damos un pt-5 y pb-5  -->
-              <!-- LOGIN CON INPUT -->
-              <form action="login.html" class="was-validated">
+              <h2 class="fw-bold text-center py-2">Crear usuario</h2>
+
+              <form action="registro.html" method="POST" class="was-validated">
+                <!-- Nombre de usuario -->
                 <div class="mb-4">
-                  <!-- con martin bot de 4 -->
-                  <label for="email" class="form-label"> Email</label>
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nombre"
+                    name="usunom"
+                    required
+                  />
+                </div>
+
+                <!-- Email -->
+                <div class="mb-4">
+                  <label for="email" class="form-label">Email</label>
                   <input
                     type="email"
                     class="form-control"
@@ -218,9 +223,10 @@
                     name="usuema"
                     required
                   />
-                  <!-- .is-invalid and .is-valid. para que ponga el check verde o el simbolo de error -->
                   <div class="valid-feedback">Tiene buena pinta!</div>
                 </div>
+
+                <!-- Contraseña -->
                 <div class="mb-4">
                   <label for="pass" class="form-label">Contraseña</label>
                   <input
@@ -231,48 +237,63 @@
                     required
                   />
                 </div>
+
+                <!-- Nivel de usuario -->
+                <div class="mb-4">
+                  <label for="nivel" class="form-label">Nivel</label>
+                  <select class="form-select" id="nivel" name="usuniv" required>
+                    <option value="" selected disabled>
+                      Selecciona tu nivel
+                    </option>
+                    <option value="1">Principiante</option>
+                    <option value="2">Intermedio</option>
+                    <option value="3">Avanzado</option>
+                    <option value="4">Pro</option>
+                  </select>
+                </div>
+
+                <!-- Mantenerme conectado -->
                 <div class="mb-4 form-check">
-                  <!-- Para el checkbox, form-check le da un espaciado -->
-                  <label for="conectado" class="form-check-label"
-                    >Mantenerme conectado</label
-                  >
                   <input
                     type="checkbox"
                     class="form-check-input"
                     name="conectado"
                     id="conectado"
                   />
+                  <label for="conectado" class="form-check-label"
+                    >Mantenerme conectado</label
+                  >
                 </div>
+
+                <!-- Botón de registro -->
                 <div class="d-grid">
-                  <!-- pueda expandirs en todo el ancho del contenedor -->
                   <button
                     type="submit"
                     class="btn btn-info border-3 border-secondary"
                   >
-                    Iniciar sesión
+                    Crear usuario
                   </button>
                 </div>
+
+                <!-- Enlaces adicionales -->
                 <div class="my-3">
                   <span
-                    >¿No tienes cuenta?
-                    <a href="registro.html">Registrate aquí</a></span
+                    >¿Tienes cuenta?
+                    <a href="/views/login.html">Inicia sesión aquí</a></span
                   >
                   <p><a href="#">Recuperar contraseña</a></p>
                 </div>
               </form>
+
               <!-- LOGIN CON REDES SOCIALES -->
               <div class="container w-100 my-5">
-                <!-- contenedor que ocupa el 100% del ancho del contenedor -->
                 <div class="row text-center">
-                  <div class="col-12">Inicia sesión con:</div>
+                  <div class="col-12">Registrate con:</div>
                 </div>
                 <div class="row mt-2">
-                  <!-- una fila en line que tendrá dos columnas que usaremos -->
                   <div class="col">
-                    <a class="btn btn-outline-primary w-100 my-1"
-                      ><!-- botón que con outline no se rellena el color, solo el borde y con hover se rellene -->
+                    <a class="btn btn-outline-primary w-100 my-1">
                       <div class="row align-items-center">
-                        <!-- centrar los elementos de forma vertical -->
                         <div class="col-2 d-none d-md-block">
                           <i class="bi bi-facebook text-primary-emphasis"></i>
                         </div>
@@ -281,10 +302,8 @@
                     </a>
                   </div>
                   <div class="col">
-                    <a class="btn btn-outline-danger w-100 my-1"
-                      ><!-- botón que con outline no se rellena el color, solo el borde y con hover se rellene -->
+                    <a class="btn btn-outline-danger w-100 my-1">
                       <div class="row align-items-center">
-                        <!-- centrar los elementos de forma vertical -->
                         <div class="col-2 d-none d-md-block">
                           <i class="bi bi-google text-danger-emphasis"></i>
                         </div>
@@ -294,7 +313,9 @@
                   </div>
                 </div>
               </div>
+              <!-- FIN LOGIN REDES -->
             </div>
+            <!-- FIN FORMULARIO -->
           </div>
         </div>
       </section>
@@ -332,6 +353,6 @@
       </div>
     </footer>
 
-    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/assets/css/bootstrap/js/bootstrap.bundle.js"></script>
   </body>
 </html>
