@@ -15,12 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             if (response.ok) {
-                alert("Archivo importado con éxito");
+                alert("Archivo importado con éxito. " + await response.text());
                 // Puedes agregar lógica adicional aquí, como redirigir a otra página
             } else {
                 const errorData = await response.json();
                 alert("Error: " + errorData.message);
-            }
+            }   
         } catch (error) {
             console.error("Error en la petición:", error);
             alert("Hubo un error al importar el archivo");
