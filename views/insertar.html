@@ -44,7 +44,7 @@
       }
 
       .bg {
-        background-image: url("images/carrusel/recomendaciones_carousel.jpg");
+        background-image: url("/assets/images/carrusel/recomendaciones_carousel.jpg");
       }
     </style>
   </head>
@@ -186,64 +186,39 @@
     <!-- IMPORTAR EXCEL -->
     <main>
       <section>
-        <div
-          class="container col-10 col-md-6 bg-warning rounded-5 shadow mt-1 mt-md-0"
-        >
-          <div class="row">
-            <!-- IMAGEN -->
-            <div
-              class="col bg d-none d-md-block col-md-4 rounded-start-5"
-            ></div>
-
-            <!-- FORMULARIO -->
-            <div class="col p-1 p-sm-5">
-              <div class="text-end mt-2">
-                <img src="/assets/images/logo/logo.png" alt="logo" width="48" />
-              </div>
-              <h2 class="fw-bold text-center py-2">
-                Importar Palas desde Excel
-              </h2>
-
-              <form
-                action="importar_palas"
-                method="POST"
-                enctype="multipart/form-data"
-                class="was-validated"
-              >
-                <!-- Selección de archivo -->
-                <div class="mb-4">
-                  <label for="archivoExcel" class="form-label"
-                    >Seleccionar archivo Excel</label
-                  >
-                  <input
-                    type="file"
-                    class="form-control"
-                    id="archivoExcel"
-                    name="archivoExcel"
-                    accept=".xls,.xlsx"
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Por favor, sube un archivo en formato Excel (.xls, .xlsx).
+          <div class="container col-10 col-md-6 bg-warning rounded-5 shadow mt-1 mt-md-0">
+              <div class="row">
+                  <!-- IMAGEN -->
+                  <div class="col bg d-none d-md-block col-md-4 rounded-start-5"></div>
+  
+                  <!-- FORMULARIO -->
+                  <div class="col p-1 p-sm-5">
+                      <div class="text-end mt-2">
+                          <img src="/assets/images/logo/logo.png" alt="logo" width="48" />
+                      </div>
+                      <h2 class="fw-bold text-center py-2">Importar Palas desde Excel</h2>
+  
+                      <form id="importarForm" class="was-validated">
+                          <!-- Selección de archivo -->
+                          <div class="mb-4">
+                              <label for="archivoExcel" class="form-label">Seleccionar archivo Excel</label>
+                              <input type="file" class="form-control" id="archivoExcel" name="archivoExcel" accept=".xls,.xlsx" required />
+                              <div class="invalid-feedback">
+                                  Por favor, sube un archivo en formato Excel (.xls, .xlsx).
+                              </div>
+                          </div>
+  
+                          <!-- Botón de importar -->
+                          <div class="d-grid">
+                              <button type="submit" class="btn btn-info border-3 border-secondary">Importar</button>
+                          </div>
+                      </form>
                   </div>
-                </div>
-
-                <!-- Botón de importar -->
-                <div class="d-grid">
-                  <button
-                    type="submit"
-                    class="btn btn-info border-3 border-secondary"
-                  >
-                    Importar
-                  </button>
-                </div>
-              </form>
-            </div>
-            <!-- FIN FORMULARIO -->
+                  <!-- FIN FORMULARIO -->
+              </div>
           </div>
-        </div>
       </section>
-    </main>
+  </main>
 
     <!-- Footer -->
     <footer class="mt-5 p-2 bg-dark border-top border-secondary border-4">
@@ -278,5 +253,6 @@
     </footer>
 
     <script src="/assets/css/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/assets/js/importar.js"></script>
   </body>
 </html>
