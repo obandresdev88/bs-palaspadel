@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro</title>
-    <link rel="shortcut icon" type="image/ico" href="/assets/images/logo/logo.ico" />
+    <link
+      rel="shortcut icon"
+      type="image/ico"
+      href="/assets/images/logo/logo.ico"
+    />
     <link
       rel="stylesheet"
       type="text/css"
@@ -44,10 +48,13 @@
       }
 
       .bg {
-        background-image: url("images/carrusel/recomendaciones_carousel.jpg");
+        background-image: url("/assets/images/carrusel/recomendaciones_carousel.jpg");
       }
     </style>
   </head>
+
+  <!-- JAVASCRIPT PARA EL REGISTRO -->
+  <script src="/assets/js/registro.js"></script>
 
   <body class="vh-100 bg-info bg-gradient bg-opacity-25">
     <header class="sticky-top border-bottom border-secondary border-4">
@@ -181,7 +188,7 @@
       </ol>
     </nav>
 
-    <!-- formulario -->
+    <!-- REGISTRO -->
     <main>
       <section>
         <div
@@ -200,7 +207,7 @@
               </div>
               <h2 class="fw-bold text-center py-2">Crear usuario</h2>
 
-              <form action="registro.html" method="POST" class="was-validated">
+              <form onsubmit="return false;" class="was-validated" id="registroForm"> <!-- onsubmit="return false;" evita que se envíe el formulario de la propia pagina, quitamos el method post  -->
                 <!-- Nombre de usuario -->
                 <div class="mb-4">
                   <label for="nombre" class="form-label">Nombre</label>
@@ -245,10 +252,10 @@
                     <option value="" selected disabled>
                       Selecciona tu nivel
                     </option>
-                    <option value="1">Principiante</option>
-                    <option value="2">Intermedio</option>
-                    <option value="3">Avanzado</option>
-                    <option value="4">Pro</option>
+                    <option value="Principiante">Principiante</option>
+                    <option value="Intermedio">Intermedio</option>
+                    <option value="Avanzado">Avanzado</option>
+                    <option value="Pro">Pro</option>
                   </select>
                 </div>
 
