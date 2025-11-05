@@ -23,7 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }   
         } catch (error) {
             console.error("Error en la petición:", error);
-            alert("Hubo un error al importar el archivo");
-        }
+            const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            document.getElementById('errorModalBody').textContent = "Hubo un error al importar el archivo";
+            errorModal.show();    }
     });
 });

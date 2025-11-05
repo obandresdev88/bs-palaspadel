@@ -232,6 +232,7 @@
             <option value="Nox">Nox</option>
             <option value="Adidas">Adidas</option>
             <option value="Head">Head</option>
+            <option value="Babolat">Babolat</option>
           </select>
         </div>
 
@@ -287,9 +288,33 @@
         const formData = new FormData(form);
         const resultado = document.getElementById("resultado");
 
-        resultado.innerHTML =
-          "<p class='fw-bold'>Tu pala recomendada es: <span class='text-primary'>Bullpadel Vertex 03</span></p>";
-      }
+        resultado.innerHTML = `
+                 <div class="col">
+              <div class="card h-auto shadow-sm" style="width: 18rem">
+                <img
+                  src="/assets/images/palas/babolat.jpg"
+                  class="img fluid card-img-top"
+                  alt="pala"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">BABOLAT TECHNICAL VERON 2022</h5>
+                  <p class="card-text">Potencia, Babolat</p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <p class="text-primary fw-bold">158,45€</p>
+                    <a
+                      href="https://www.padelnuestro.com/babolat-technical-veron-2022-p-26913.html"
+                      target="_blank"
+                      class="btn btn-primary"
+                      >Comprar</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            `;
+              }
     </script>
 
     <script src="/assets/css/bootstrap/js/bootstrap.bundle.js"></script>

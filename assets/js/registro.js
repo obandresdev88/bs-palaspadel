@@ -29,10 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 alert("Usuario registrado con éxito");
                 window.location.href = "/views/login.html"; // Redirige al login
-            } else {
+            } else if (response.status === 409) {
+                alert("El email ingresado ya está registrado");
+            }
+            else {
                 const errorData = await response.json();
                 alert("Error: " + errorData.message);
             }
+
         } catch (error) {
             console.error("Error en la petición:", error);
             alert("Hubo un error al registrar el usuario");
