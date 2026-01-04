@@ -1,11 +1,11 @@
-
 // Función que se ejecuta cuando el documento ha sido cargado
 // Se encarga de registrar un usuario en la base de datos enviando el formulario en el body de la petición POST
 // Si la petición es exitosa, redirige al usuario al login
 
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("registroForm");
+    const form = document.getElementById("registroForm");    
 
+    // MANEJO del evento SUBMIT del FORMULARIO DE REGISTRO
     form.addEventListener("submit", async function (event) {
         event.preventDefault(); // Evita que el formulario se envíe por defecto
 
