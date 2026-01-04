@@ -14,11 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
             usunom: document.getElementById("nombre").value,
             usuema: document.getElementById("email").value,
             usupas: document.getElementById("pass").value,
-            usuniv: document.getElementById("nivel").value.toUpperCase()
+            usuniv: document.getElementById("nivel").value.toUpperCase(),
+            usuconectado: document.getElementById("conectado").checked
         };
 
         try {
-            const response = await fetch("http://localhost:8080/usuarios/registro", {
+            const response = await fetch("http://localhost:8080/api/auth/registro", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -27,19 +28,47 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             if (response.ok) {
-                alert("Usuario registrado con éxito");
-                window.location.href = "/views/login.html"; // Redirige al login
+                // Mostrar modal de éxito
+                document.getElementById('successModalBody').textContent = "Usuario registrado con éxito";
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+                
+                // Esperar a que se cierre el modal antes de redirigir
+                document.getElementById('successModal').addEventListener('hidden.bs.modal', function () {
+                    if (usuario.usuconectado) {
+                        localStorage.setItem("usuarioConectado", JSON.stringify(usuario));
+                        window.location.href = "/index.html";
+                    } else {
+                        window.location.href = "/views/login.html";
+                    }
+                }, { once: true });
             } else if (response.status === 409) {
-                alert("El email ingresado ya está registrado");
-            }
-            else {
+                // Modal de advertencia si el email ya está registrado
+                document.getElementById('warningModalBody').textContent = "El email ingresado ya está registrado";
+                const warningModal = new bootstrap.Modal(document.getElementById('warningModal'));
+                warningModal.show();
+            } else {
                 const errorData = await response.json();
-                alert("Error: " + errorData.message);
+                let errorMessage = "Error desconocido";
+                
+                // Si hay errores de validación específicos que provienen del backend, mostrarlos
+                if (errorData.errors && Object.keys(errorData.errors).length > 0) {
+                    // Obtener todos los mensajes de error de validación
+                    errorMessage = Object.values(errorData.errors).join(', ');
+                } else if (errorData.message) {
+                    errorMessage = errorData.message;
+                }
+                
+                document.getElementById('errorModalBody').textContent = errorMessage;
+                const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                errorModal.show();
             }
 
         } catch (error) {
             console.error("Error en la petición:", error);
-            alert("Hubo un error al registrar el usuario");
+            document.getElementById('errorModalBody').textContent = "Hubo un error al registrar el usuario";
+            const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            errorModal.show();
         }
     });
 });

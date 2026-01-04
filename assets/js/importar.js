@@ -15,16 +15,21 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             if (response.ok) {
-                alert("Archivo importado con éxito. " + await response.text());
-                // Puedes agregar lógica adicional aquí, como redirigir a otra página
+                const responseText = await response.text();
+                document.getElementById('successModalBody').textContent = "Archivo importado con éxito. " + responseText;
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
             } else {
                 const errorData = await response.json();
-                alert("Error: " + errorData.message);
+                document.getElementById('errorModalBody').textContent = "Error: " + errorData.message;
+                const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                errorModal.show();
             }   
         } catch (error) {
             console.error("Error en la petición:", error);
-            const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
             document.getElementById('errorModalBody').textContent = "Hubo un error al importar el archivo";
-            errorModal.show();    }
+            const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            errorModal.show();
+        }
     });
 });

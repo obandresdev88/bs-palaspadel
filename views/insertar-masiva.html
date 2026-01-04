@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Insertar palas</title>
+    <title>Insertar palas masiva</title>
     <link rel="shortcut icon" type="image/ico" href="/assets/images/logo/logo.ico" />
     <link
       rel="stylesheet"
@@ -129,8 +129,8 @@
                     </a>
                   </li>
                   <li class="dropdown-item border-bottom border-dark border-2">
-                    <a class="nav-link active" href="/views/insertar.html">
-                      <span class="text-dark">Insertar palas</span>
+                    <a class="nav-link active" href="/views/insertar-masiva.html">
+                      <span class="text-dark">Insertar palas masiva</span>
                     </a>
                   </li>
                 </ul>
@@ -164,10 +164,23 @@
               </button>
             </form>
           </div>
+          
+          <!-- Icono de login / Dropdown de usuario -->
           <div class="d-flex align-content-end">
-            <a class="" href="/views/login.html">
+            <!-- Pre-login: Icono de persona -->
+            <a class="" href="/views/login.html" id="loginIcon">
               <i class="bi bi-person-fill"> </i>
             </a>
+            
+            <!-- Post-login: Dropdown con nombre usuario -->
+            <div id="userDropdown" class="dropdown" style="display: none;">
+              <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                <i class="bi bi-person-circle"></i> <span id="nombreLogin">Usuario</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </nav>
@@ -178,7 +191,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/index.html">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">
-          Insertar palas
+          Insertar palas masiva
         </li>
       </ol>
     </nav>
@@ -252,6 +265,68 @@
       </div>
     </footer>
 
+    <!-- Modales -->
+    <!-- Modal de Éxito -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title" id="successModalLabel">
+              <i class="bi bi-check-circle-fill"></i> Éxito
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="successModalBody">
+            Operación realizada con éxito.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Error -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="errorModalLabel">
+              <i class="bi bi-exclamation-triangle-fill"></i> Error
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="errorModalBody">
+            Ha ocurrido un error.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Advertencia -->
+    <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-warning text-dark">
+            <h5 class="modal-title" id="warningModalLabel">
+              <i class="bi bi-exclamation-circle-fill"></i> Advertencia
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="warningModalBody">
+            Advertencia.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Entendido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/assets/js/auth.js"></script>
     <script src="/assets/css/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/assets/js/importar.js"></script>
   </body>
