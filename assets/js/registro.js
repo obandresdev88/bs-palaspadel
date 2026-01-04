@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById('successModal').addEventListener('hidden.bs.modal', function () {
                     if (usuario.usuconectado) {
                         localStorage.setItem("usuarioConectado", JSON.stringify(usuario));
+                        localStorage.setItem("authToken", usuario.token); 
                         window.location.href = "/index.html";
                     } else {
                         window.location.href = "/views/login.html";

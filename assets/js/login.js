@@ -27,9 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 const usuarioRespuesta = await response.json();
                 
-                // Guardar usuario en localStorage                 
+                
+                // Guardar usuario y token en localStorage
                 localStorage.setItem("usuarioConectado", JSON.stringify(usuarioRespuesta));
                 
+                // Si el backend devuelve el token JWT en la respuesta, guardarlo por separado
+                if (usuarioRespuesta.token) {
+                    localStorage.setItem("authToken", usuarioRespuesta.token);
+                }
                 
                 // Mostrar modal de éxito
                 document.getElementById('successModalBody').textContent = "Usuario logueado con éxito";

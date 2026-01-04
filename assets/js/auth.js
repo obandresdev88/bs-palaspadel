@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } catch (error) {
             console.error("Error al parsear usuario:", error);
             localStorage.removeItem("usuarioConectado");
+            localStorage.removeItem("authToken");
         }
     } else {
         // No hay usuario conectado
@@ -41,8 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
         logoutBtn.addEventListener("click", function (event) {
             event.preventDefault();
             
-            // Limpiar localStorage
+            // Limpiar localStorage (usuario y token)
             localStorage.removeItem("usuarioConectado");
+            localStorage.removeItem("authToken");
             
             // Verificar si existe el modal
             const successModalElement = document.getElementById('successModal');
