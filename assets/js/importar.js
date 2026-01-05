@@ -9,8 +9,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const formData = new FormData(form);
 
         try {
-            const response = await fetch("http://localhost:8080/palas/importar", {
+            const token = localStorage.getItem("authToken");
+            if (!token) {
+                document.getElementById('errorModalBody').textContent = "Debes iniciar sesión para importar archivos";
+                const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                errorModal.show();
+                return;
+            }
+
+            const response = await fetch("/api/palas/insertar-masiva", {
                 method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                },
                 body: formData
             });
 

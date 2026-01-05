@@ -217,132 +217,19 @@
       </section>
 
       <h3 class="text-center p-1 d-none d-md-block">Palas de pádel</h3>
+      
+      <!-- Botón para crear pala (solo visible para ADMIN) -->
+      <div class="container text-end mb-3">
+        <button id="btnCrearPala" class="btn btn-success" onclick="abrirModalCrear()" style="display: none;">
+          <i class="bi bi-plus-circle"></i> Crear Pala
+        </button>
+      </div>
 
       <section class="py-1">
         <div class="container">
-          <div
-            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4"
-          >
-            <div class="col">
-              <div class="card h-auto shadow-sm">
-                <img
-                  src="/assets/images/palas/multi.jpg"
-                  class="img fluid card-img-top"
-                  alt="pala"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">ADIDAS ADIPOWER MULTIWEIGHT CTRL</h5>
-                  <p class="card-text">Control, Adidas</p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <p class="text-primary fw-bold">399,95€</p>
-                    <a
-                      href="https://www.padelnuestro.com/adidas-adipower-multiweight-ctrl-2023-p-32939.html"
-                      target="_blank"
-                      class="btn btn-primary"
-                      >Comprar</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-auto shadow-sm">
-                <img
-                  src="/assets/images/palas/ADIDAS-ADIPOWER-CARBON-CTRL-2025.webp"
-                  class="img fluid card-img-top"
-                  alt="pala"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">ADIDAS METALBONE HRD 3.2 2023</h5>
-                  <p class="card-text">Potencia, Adidas</p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <p class="text-primary fw-bold">389,95€</p>
-                    <a
-                      href="https://www.padelnuestro.com/adidas-metalbone-hrd-32-2023-p-32917.html"
-                      target="_blank"
-                      class="btn btn-primary"
-                      >Comprar</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-auto shadow-sm">
-                <img
-                  src="/assets/images/palas/OSIRIS.jpg"
-                  class="img fluid card-img-top"
-                  alt="pala"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">STARVIE BASALTO OSIRIS 2.0 2023L</h5>
-                  <p class="card-text">Potencia, Starvie</p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <p class="text-primary fw-bold">261,00€</p>
-                    <a
-                      href="https://www.padelnuestro.com/starvie-basalto-osiris-20-2023-p-33171.html"
-                      target="_blank"
-                      class="btn btn-primary"
-                      >Comprar</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-auto shadow-sm">
-                <img
-                  src="/assets/images/palas/DRONOSUSS.jpg"
-                  class="img fluid card-img-top"
-                  alt="pala"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">STARVIE DRONOS GALAXY SPEED 2.0</h5>
-                  <p class="card-text">Polivalente, Starvie</p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <p class="text-primary fw-bold">242,91€</p>
-                    <a
-                      href="https://www.padelnuestro.com/starvie-dronos-galaxy-speed-20-2023-p-33158.html"
-                      target="_blank"
-                      class="btn btn-primary"
-                      >Comprar</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-auto shadow-sm">
-                <img
-                  src="/assets/images/palas/babolat.jpg"
-                  class="img fluid card-img-top"
-                  alt="pala"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">BABOLAT TECHNICAL VERON 2022</h5>
-                  <p class="card-text">Potencia, Babolat</p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <p class="text-primary fw-bold">158,45€</p>
-                    <a
-                      href="https://www.padelnuestro.com/babolat-technical-veron-2022-p-26913.html"
-                      target="_blank"
-                      class="btn btn-primary"
-                      >Comprar</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div id="palasContainer"
+            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <!-- Las palas se cargarán dinámicamente aquí -->
           </div>
         </div>
       </section>
@@ -441,8 +328,188 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal Crear Pala -->
+    <div class="modal fade" id="modalCrearPala" tabindex="-1" aria-labelledby="modalCrearPalaLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="modalCrearPalaLabel">
+              <i class="bi bi-plus-circle"></i> Crear Nueva Pala
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formCrearPala">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="crear_marca" class="form-label">Marca <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="crear_marca" maxlength="50" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="crear_modelo" class="form-label">Modelo <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="crear_modelo" maxlength="75" required>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="crear_peso" class="form-label">Peso (g) <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="crear_peso" min="0" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="crear_forma" class="form-label">Forma <span class="text-danger">*</span></label>
+                  <select class="form-select" id="crear_forma" required>
+                    <option value="">Seleccione forma</option>
+                    <option value="REDONDA">Redonda</option>
+                    <option value="LAGRIMA">Lágrima</option>
+                    <option value="DIAMANTE">Diamante</option>
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="crear_dureza" class="form-label">Dureza <span class="text-danger">*</span></label>
+                  <select class="form-select" id="crear_dureza" required>
+                    <option value="">Seleccione dureza</option>
+                    <option value="BLANDA">Blanda</option>
+                    <option value="MEDIA">Media</option>
+                    <option value="MEDIA_DURA">Media Dura</option>
+                    <option value="DURA">Dura</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="crear_balance" class="form-label">Balance <span class="text-danger">*</span></label>
+                  <select class="form-select" id="crear_balance" required>
+                    <option value="">Seleccione balance</option>
+                    <option value="BAJO">Bajo</option>
+                    <option value="MEDIO">Medio</option>
+                    <option value="ALTO">Alto</option>
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="crear_precio" class="form-label">Precio (€) <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="crear_precio" step="0.01" min="0" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="crear_urlCompra" class="form-label">URL Compra <span class="text-danger">*</span></label>
+                  <input type="url" class="form-control" id="crear_urlCompra" required>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="crear_imagen" class="form-label">Imagen</label>
+                <input type="file" class="form-control" id="crear_imagen" accept="image/*">
+                <div class="form-text">Formatos aceptados: JPG, PNG, GIF, webp</div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" onclick="crearPala()">
+              <i class="bi bi-save"></i> Guardar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Editar Pala -->
+    <div class="modal fade" id="modalEditarPala" tabindex="-1" aria-labelledby="modalEditarPalaLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-warning text-dark">
+            <h5 class="modal-title" id="modalEditarPalaLabel">
+              <i class="bi bi-pencil-square"></i> Editar Pala
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formEditarPala">
+              <input type="hidden" id="editar_id">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="editar_marca" class="form-label">Marca <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="editar_marca" maxlength="50" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="editar_modelo" class="form-label">Modelo <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="editar_modelo" maxlength="75" required>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="editar_peso" class="form-label">Peso (g) <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="editar_peso" min="0" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="editar_forma" class="form-label">Forma <span class="text-danger">*</span></label>
+                  <select class="form-select" id="editar_forma" required>
+                    <option value="">Seleccione forma</option>
+                    <option value="REDONDA">Redonda</option>
+                    <option value="LAGRIMA">Lágrima</option>
+                    <option value="DIAMANTE">Diamante</option>
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="editar_dureza" class="form-label">Dureza <span class="text-danger">*</span></label>
+                  <select class="form-select" id="editar_dureza" required>
+                    <option value="">Seleccione dureza</option>
+                    <option value="BLANDA">Blanda</option>
+                    <option value="MEDIA">Media</option>
+                    <option value="MEDIA_DURA">Media Dura</option>
+                    <option value="DURA">Dura</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="editar_balance" class="form-label">Balance <span class="text-danger">*</span></label>
+                  <select class="form-select" id="editar_balance" required>
+                    <option value="">Seleccione balance</option>
+                    <option value="BAJO">Bajo</option>
+                    <option value="MEDIO">Medio</option>
+                    <option value="ALTO">Alto</option>
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="editar_precio" class="form-label">Precio (€) <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="editar_precio" step="0.01" min="0" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="editar_urlCompra" class="form-label">URL Compra <span class="text-danger">*</span></label>
+                  <input type="url" class="form-control" id="editar_urlCompra" required>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="editar_imagen" class="form-label">Imagen</label>
+                <input type="file" class="form-control" id="editar_imagen" accept="image/*">
+                <div class="form-text">Deja vacío si no quieres cambiar la imagen actual</div>
+              </div>
+              <div class="mb-3" id="imagenActualContainer" style="display: none;">
+                <label class="form-label">Imagen Actual</label>
+                <div>
+                  <img id="imagenActual" src="" alt="Imagen actual" class="img-thumbnail" style="max-height: 150px;">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-warning" onclick="actualizarPala()">
+              <i class="bi bi-save"></i> Actualizar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <script src="/assets/js/auth.js"></script>
     <script src="/assets/css/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/palas.js"></script>
   </body>
 </html>
