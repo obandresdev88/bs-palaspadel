@@ -28,16 +28,24 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             if (response.ok) {
+                const usuarioRespuesta = await response.json();
                 // Mostrar modal de éxito
                 document.getElementById('successModalBody').textContent = "Usuario registrado con éxito";
                 const successModal = new bootstrap.Modal(document.getElementById('successModal'));
                 successModal.show();
-                
+
+                // Normalizar objeto usuario que puede venir en distintos formatos
+                const userObj = usuarioRespuesta.user || usuarioRespuesta.usuario || usuarioRespuesta;
+                if (usuarioRespuesta.token) {
+                    localStorage.setItem("authToken", usuarioRespuesta.token);
+                }
+
                 // Esperar a que se cierre el modal antes de redirigir
                 document.getElementById('successModal').addEventListener('hidden.bs.modal', function () {
                     if (usuario.usuconectado) {
-                        localStorage.setItem("usuarioConectado", JSON.stringify(usuario));
-                        localStorage.setItem("authToken", usuario.token); 
+                        try {
+                            sessionStorage.setItem("usuarioConectado", JSON.stringify(userObj));
+                        } catch (e) { console.error('No se pudo guardar usuario en sessionStorage', e); }
                         window.location.href = "/index.html";
                     } else {
                         window.location.href = "/views/login.html";

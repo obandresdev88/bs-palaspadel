@@ -2,20 +2,48 @@
 
 let esAdmin = false;
 
+function isAdminFromUser(usuario) {
+    if (!usuario) return false;
+    if (Array.isArray(usuario.roles)) {
+        return usuario.roles.includes('ADMIN') || usuario.roles.includes('ROLE_ADMIN');
+    }
+    if (typeof usuario.role === 'string') {
+        const r = usuario.role.toUpperCase();
+        return r === 'ADMIN' || r === 'ROLE_ADMIN';
+    }
+    if (usuario.isAdmin === true) return true;
+    return false;
+}
+
+// Comprobar sesión y roles al cargar la página
 document.addEventListener("DOMContentLoaded", async function () {
-    // Verificar si el usuario está logueado
-    const token = localStorage.getItem("authToken");
-    esAdmin = !!token; // Si hay token, mostramos opciones de admin (el backend valida el rol)
-    
-    // Mostrar/ocultar botón de crear pala según si está logueado
+    // Preferimos sessionStorage (se borra al cerrar pestaña), fallback a localStorage
+    let usuarioConectadoStr = sessionStorage.getItem("usuarioConectado");
+    if (!usuarioConectadoStr) usuarioConectadoStr = localStorage.getItem("usuarioConectado");
+
+    let usuario = null;
+    if (usuarioConectadoStr) {
+        try {
+            usuario = JSON.parse(usuarioConectadoStr);
+        } catch (e) {
+            console.error('Error parseando usuarioConectado', e);
+            // limpiar si está corrupto
+            sessionStorage.removeItem('usuarioConectado');
+            localStorage.removeItem('usuarioConectado');
+        }
+    }
+
+    esAdmin = isAdminFromUser(usuario);
+
+    // Mostrar/ocultar botón de crear pala según rol admin
     const btnCrearPala = document.getElementById("btnCrearPala");
     if (btnCrearPala) {
         btnCrearPala.style.display = esAdmin ? "block" : "none";
     }
-    
+
     // Cargar las palas
     await cargarPalas();
-    
+
     // Configurar eventos
     configurarEventos();
 });
@@ -121,6 +149,7 @@ function abrirModalCrear() {
 
 // Crear nueva pala
 async function crearPala() {
+    if (!ensureAdmin()) return;
     const token = localStorage.getItem("authToken");
     if (!token) {
         mostrarError("Debes iniciar sesión");
@@ -198,6 +227,7 @@ async function editarPala(id) {
 
 // Actualizar pala existente
 async function actualizarPala() {
+    if (!ensureAdmin()) return;
     const token = localStorage.getItem("authToken");
     if (!token) {
         mostrarError("Debes iniciar sesión");
@@ -277,6 +307,7 @@ function mostrarConfirmEliminar(id, nombre) {
 
 // Eliminar pala (hace la petición al servidor)
 async function eliminarPala(id) {
+    if (!ensureAdmin()) return;
     const token = localStorage.getItem("authToken");
     if (!token) {
         mostrarError("Debes iniciar sesión");
@@ -312,4 +343,12 @@ function mostrarError(mensaje) {
     document.getElementById('errorModalBody').textContent = mensaje;
     const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
     errorModal.show();
+}
+
+function ensureAdmin() {
+    if (!esAdmin) {
+        mostrarError('No tienes permisos para realizar esta acción');
+        return false;
+    }
+    return true;
 }

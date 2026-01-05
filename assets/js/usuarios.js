@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             
             document.getElementById('warningModal').addEventListener('hidden.bs.modal', function () {
                 localStorage.removeItem("authToken");
+                sessionStorage.removeItem("usuarioConectado");
                 localStorage.removeItem("usuarioConectado");
                 window.location.href = "/views/login.html";
             }, { once: true });

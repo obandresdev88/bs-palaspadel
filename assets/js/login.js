@@ -28,12 +28,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 const usuarioRespuesta = await response.json();
                 
                 
-                // Guardar usuario y token en localStorage
-                localStorage.setItem("usuarioConectado", JSON.stringify(usuarioRespuesta));
-                
-                // Si el backend devuelve el token JWT en la respuesta, guardarlo por separado
+                // Guardar token (si viene) en localStorage y usuario en sessionStorage para la UI
                 if (usuarioRespuesta.token) {
                     localStorage.setItem("authToken", usuarioRespuesta.token);
+                }
+
+                // La respuesta puede devolver directamente el user o un wrapper. Normalizamos:
+                const userObj = usuarioRespuesta.user || usuarioRespuesta.usuario || usuarioRespuesta;
+                try {
+                    sessionStorage.setItem("usuarioConectado", JSON.stringify(userObj));
+                } catch (e) {
+                    console.error('No se pudo guardar usuario en sessionStorage', e);
                 }
                 
                 // Mostrar modal de éxito

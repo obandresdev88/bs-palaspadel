@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const logoutBtn = document.getElementById("logoutBtn");
 
     // Verificar si hay un usuario conectado
-    const usuarioConectado = localStorage.getItem("usuarioConectado");
+    // Preferimos sessionStorage para datos de sesión, fallback a localStorage
+    let usuarioConectado = sessionStorage.getItem("usuarioConectado");
+    if (!usuarioConectado) usuarioConectado = localStorage.getItem("usuarioConectado");
 
     if (usuarioConectado) {
         try {
@@ -28,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         } catch (error) {
             console.error("Error al parsear usuario:", error);
+            sessionStorage.removeItem("usuarioConectado");
             localStorage.removeItem("usuarioConectado");
             localStorage.removeItem("authToken");
         }
@@ -43,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
             
             // Limpiar localStorage (usuario y token)
+            sessionStorage.removeItem("usuarioConectado");
             localStorage.removeItem("usuarioConectado");
             localStorage.removeItem("authToken");
             
