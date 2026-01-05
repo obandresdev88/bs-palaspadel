@@ -53,7 +53,7 @@ function mostrarPalas(palas) {
     
     palas.forEach(pala => {
         const col = document.createElement("div");
-        col.className = "col";
+        col.className = "col d-flex";
         
         // Construir URL de la imagen
         const imagenUrl = pala.imagen 
@@ -61,29 +61,30 @@ function mostrarPalas(palas) {
             : '/assets/images/palas/default.jpg';
         
         col.innerHTML = `
-            <div class="card h-auto shadow-sm">
-                <img src="${imagenUrl}" 
+            <div class="card h-100 shadow-sm flex-fill">
+                 <img src="${imagenUrl}" 
                      class="img-fluid card-img-top" 
-                     alt="${pala.modelo}"
-                     style="height: 300px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">${pala.marca} ${pala.modelo}</h5>
-                    <p class="card-text mb-1"><small class="text-muted">Forma: ${pala.forma} | Peso: ${pala.peso}g</small></p>
-                    <p class="card-text mb-1"><small class="text-muted">Dureza: ${pala.dureza} | Balance: ${pala.balance}</small></p>
-                    <div class="d-flex justify-content-between align-items-center mt-2">
-                        <p class="text-primary fw-bold mb-0">${pala.precio}€</p>
-                        ${pala.urlCompra ? `<a href="${pala.urlCompra}" target="_blank" class="btn btn-primary btn-sm">Comprar</a>` : ''}
-                    </div>
-                    ${esAdmin ? `
-                        <div class="mt-2 d-flex gap-2">
-                            <button class="btn btn-warning btn-sm flex-fill" onclick="editarPala(${pala.id})">
-                                <i class="bi bi-pencil"></i> Editar
-                            </button>
-                            <button class="btn btn-danger btn-sm flex-fill" onclick="eliminarPala(${pala.id}, '${pala.modelo}')">
-                                <i class="bi bi-trash"></i> Eliminar
-                            </button>
+                     alt="${pala.modelo}">
+                                 <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title" style="min-height:3.6rem; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">${pala.marca} ${pala.modelo}</h5>
+                                        <div class="card-text mb-1 pala-attrs" style="min-height:3.2rem;">
+                                            <p class="mb-1"><small class="text-muted">Forma: ${pala.forma} | Peso: ${pala.peso}g</small></p>
+                                            <p class="mb-0"><small class="text-muted">Dureza: ${pala.dureza} | Balance: ${pala.balance}</small></p>
+                                        </div>
+                                        <div class="mt-2 mt-auto d-flex justify-content-between align-items-center">
+                                                ${pala.urlCompra ? `<a href="${pala.urlCompra}" target="_blank" class="text-primary fw-bold text-decoration-none">${pala.precio}€</a>` : `<p class="text-primary fw-bold mb-0">${pala.precio}€</p>`}
+                                                <div class="d-flex align-items-center gap-2">
+                                                        ${pala.urlCompra ? `` : ''}
+                            ${esAdmin ? `
+                                <button class="btn btn-warning btn-sm" onclick="editarPala(${pala.id})">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="btn btn-danger btn-sm" onclick="mostrarConfirmEliminar(${pala.id}, '${pala.modelo}')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            ` : ''}
                         </div>
-                    ` : ''}
+                    </div>
                 </div>
             </div>
         `;
@@ -246,17 +247,42 @@ async function actualizarPala() {
     }
 }
 
-// Eliminar pala
-async function eliminarPala(id, nombre) {
-    const confirmar = confirm(`¿Estás seguro de que deseas eliminar la pala "${nombre}"?`);
-    if (!confirmar) return;
-    
+// Mostrar modal de confirmación y ejecutar eliminación si confirman
+function mostrarConfirmEliminar(id, nombre) {
+    const body = document.getElementById('confirmModalBody');
+    body.textContent = `¿Estás seguro de que deseas eliminar la pala "${nombre}"?`;
+
+    const modalEl = document.getElementById('confirmModal');
+    const confirmModal = new bootstrap.Modal(modalEl);
+    const btn = document.getElementById('confirmModalBtnConfirm');
+
+    const onConfirm = async () => {
+        btn.removeEventListener('click', onConfirm);
+        try {
+            await eliminarPala(id);
+        } catch (e) {
+            console.error(e);
+        }
+        confirmModal.hide();
+    };
+
+    // Si cierran el modal de cualquier otra forma, quitar el listener para evitar fugas
+    modalEl.addEventListener('hidden.bs.modal', () => {
+        btn.removeEventListener('click', onConfirm);
+    }, { once: true });
+
+    btn.addEventListener('click', onConfirm);
+    confirmModal.show();
+}
+
+// Eliminar pala (hace la petición al servidor)
+async function eliminarPala(id) {
     const token = localStorage.getItem("authToken");
     if (!token) {
         mostrarError("Debes iniciar sesión");
         return;
     }
-    
+
     try {
         const response = await fetch(`http://localhost:8080/api/palas/${id}`, {
             method: "DELETE",
