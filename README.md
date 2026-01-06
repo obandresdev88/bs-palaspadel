@@ -1,13 +1,215 @@
-## TAREA REALIZADA PARA EL PROYECTO TFG DE DESARROLLO DE APLICACIONES WEB
+# 🎾 Palaspadel - Plataforma de Gestión y Recomendación de Palas
 
-Hemos realizado este tarea según las indicaciones dadas por el docente. 
+> Aplicación web full-stack para la gestión de palas de pádel con sistema de recomendación inteligente basado en perfil de jugador.
 
-La tarea trata sobre un sitio web con información sobre el pádel.
+[![Deploy Status](https://img.shields.io/badge/deploy-active-success)](https://obandresdev88.github.io/bs-palaspadel)
+[![Backend](https://img.shields.io/badge/backend-Render-46E3B7)](https://render.com)
+[![Frontend](https://img.shields.io/badge/frontend-GitHub%20Pages-181717)](https://pages.github.com)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-En documents aparece la memoria.
+## 🚀 Demo en Vivo
 
-## DESPLIEGUE
-https://riverwing.github.io/Andres-Ochoa-Bueno/
+- **Frontend:** [https://obandresdev88.github.io/bs-palaspadel](https://obandresdev88.github.io/bs-palaspadel)
+- **Backend API:** [https://palaspadel-api.onrender.com/api](https://palaspadel-api.onrender.com/api)
+
+## 📋 Sobre el Proyecto
+
+Palaspadel es una aplicación web completa que permite a los usuarios:
+
+- 🔍 **Explorar catálogo** de palas de pádel
+- 🎯 **Sistema de recomendación** personalizado basado en nivel, estilo de juego, lesiones y presupuesto
+- 👤 **Gestión de usuarios** con autenticación JWT
+- 🛠️ **Panel de administración** para CRUD de palas
+- 📊 **Importación masiva** de datos (solo admin)
+
+## 🏗️ Arquitectura
+
+```
+Frontend (HTML/CSS/JS/Bootstrap)
+         ↓
+    GitHub Pages
+         ↓
+      HTTPS
+         ↓
+Backend (Spring Boot + MariaDB)
+         ↓
+      Render
+```
+
+### Stack Tecnológico
+
+**Frontend:**
+- HTML5, CSS3, JavaScript (Vanilla)
+- Bootstrap 5.3
+- Responsive Design
+
+**Backend:**
+- Java 17
+- Spring Boot 3.4.3
+- Spring Security + JWT
+- Spring Data JPA
+- Maven
+
+**Base de Datos:**
+- MariaDB / MySQL
+
+**Infraestructura:**
+- Frontend: GitHub Pages (HTTPS automático)
+- Backend: Render (HTTPS automático)
+- Base de Datos: FreeSQLDatabase / db4free
+
+#### Backend:
+```bash
+# 1. Crear application-prod.properties y WebConfig.java
+# 2. Commit y push
+git add .
+git commit -m "feat: Configuración para producción"
+git push origin main
+
+# 3. Configurar en Render:
+# - Conectar repositorio
+# - Build: mvn clean install -DskipTests
+# - Start: java -Dspring.profiles.active=prod -jar target/[JAR].jar
+# - Variables de entorno (ver DEPLOYMENT_GUIDE.md)
+```
+
+#### Frontend:
+```bash
+# 1. Actualizar config.js con URL del backend
+# 2. Commit y push
+git add .
+git commit -m "feat: URLs de producción"
+git push origin main
+
+# 3. Activar GitHub Pages en Settings → Pages
+```
+
+## 💻 Desarrollo Local
+
+### Requisitos Previos
+
+- **Backend:** Java 17+, Maven, MariaDB
+- **Frontend:** Navegador moderno, Live Server (VS Code)
+
+### Backend Local
+
+```bash
+cd sb-palaspadel
+mvn spring-boot:run
+# API disponible en http://localhost:8080/api
+```
+
+### Frontend Local
+
+```bash
+cd bs-palaspadel
+# Abrir con Live Server en VS Code
+# O cualquier servidor HTTP estático
+```
+
+## 📁 Estructura del Proyecto
+
+```
+bs-palaspadel/                  # Frontend (este repositorio)
+├── index.html                  # Página principal
+├── assets/
+│   ├── js/
+│   │   ├── config.js          # ⭐ Configuración de URLs API
+│   │   ├── auth.js            # Manejo de autenticación
+│   │   ├── login.js           # Login de usuarios
+│   │   ├── registro.js        # Registro de usuarios
+│   │   ├── palas.js           # CRUD de palas
+│   │   ├── recomendador.js    # Sistema de recomendación
+│   │   └── usuarios.js        # Gestión de usuarios
+│   ├── css/
+│   └── images/
+├── views/                      # Páginas adicionales
+README
+
+sb-palaspadel/                  # Backend (repositorio separado)
+├── src/main/java/...
+├── src/main/resources/
+│   ├── application.properties
+│   └── application-prod.properties  # Configuración de producción
+└── pom.xml
+```
+
+## 🔑 Características Principales
+
+### Para Usuarios
+
+- **Catálogo de Palas:** Navegación completa del catálogo
+- **Recomendador Inteligente:** Wizard de 6 pasos que considera:
+  - Nivel de juego (principiante, intermedio, avanzado)
+  - Estilo de juego (ofensivo, defensivo, equilibrado)
+  - Lesiones previas de pádel
+  - Forma preferida (redonda, lágrima, diamante)
+  - Presupuesto
+- **Sistema de Puntuación:** Cada pala recibe una puntuación de compatibilidad
+
+### Para Administradores
+
+- **CRUD Completo:** Crear, editar, eliminar palas
+- **Importación Masiva:** Cargar múltiples palas desde JSON/CSV
+- **Gestión de Usuarios:** Ver todos los usuarios registrados
+- **Upload de Imágenes:** Subida de imágenes de palas
+
+### Seguridad
+
+- **Autenticación JWT:** Tokens con expiración configurable
+- **Roles de Usuario:** USER y ADMIN
+- **CORS Configurado:** Origen permitido desde GitHub Pages
+- **HTTPS Everywhere:** Frontend y backend con SSL
+
+## 📊 Variables de Configuración
+
+### Frontend (config.js)
+
+```javascript
+const CONFIG = {
+    API_URL: 'https://palaspadel-api.onrender.com/api',
+    IMAGES_URL: 'https://palaspadel-api.onrender.com'
+};
+```
+
+### Backend (application-prod.properties)
+
+```properties
+spring.datasource.url=${DATABASE_URL}
+spring.jwt.secret=${JWT_SECRET}
+frontend.url=${FRONTEND_URL}
+```
+
+## 🤝 Contribuir
+
+Las contribuciones son bienvenidas. Por favor:
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📝 Licencia
+
+Este proyecto es parte de un TFG (Trabajo de Fin de Grado) de Desarrollo de Aplicaciones Web.
+
+## 👨‍💻 Autor
+
+**Andrés Ochoa Bueno**
+
+- GitHub: [@obandresdev88](https://github.com/obandresdev88)
+- LinkedIn: [Andrés Ochoa Bueno](https://www.linkedin.com/in/Andr%C3%A9sOchoaBueno)
+
+## 🙏 Agradecimientos
+
+- Bootstrap por el framework CSS
+- Spring Boot por el framework backend
+- Render y GitHub Pages por el hosting gratuito
+
+---
+
+
 
 ## FRAMEWORKS UTILIZADOS
 

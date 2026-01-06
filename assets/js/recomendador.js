@@ -155,7 +155,7 @@ async function submitRecommendation() {
     console.log('Enviando recomendación:', formData);
 
     try {
-        const response = await fetch('http://localhost:8080/api/recomendador', {
+        const response = await fetch(`${window.CONFIG.API_URL}/recomendador`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -201,7 +201,7 @@ function mostrarResultados(palas) {
 
     palasOrdenadas.forEach((pala, index) => {
         const imagenUrl = pala.imagen 
-            ? `http://localhost:8080${pala.imagen}` 
+            ? `${window.CONFIG.IMAGES_URL}${pala.imagen}` 
             : '/assets/images/palas/default.jpg';
 
         const badgeColor = index === 0 ? '#FFD700' : (index === 1 ? '#C0C0C0' : '#CD7F32');

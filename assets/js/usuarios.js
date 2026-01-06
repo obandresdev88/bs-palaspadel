@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
     
     try {
-        const response = await fetch("http://localhost:8080/api/usuarios", {
+        const response = await fetch(`${window.CONFIG.API_URL}/usuarios`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

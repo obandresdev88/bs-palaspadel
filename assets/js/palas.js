@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 // Cargar todas las palas
 async function cargarPalas() {
     try {
-        const response = await fetch("http://localhost:8080/api/palas", {
+        const response = await fetch(`${window.CONFIG.API_URL}/palas`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -85,7 +85,7 @@ function mostrarPalas(palas) {
         
         // Construir URL de la imagen
         const imagenUrl = pala.imagen 
-            ? `http://localhost:8080${pala.imagen}` 
+            ? `${window.CONFIG.IMAGES_URL}${pala.imagen}` 
             : '/assets/images/palas/default.jpg';
         
         col.innerHTML = `
@@ -172,7 +172,7 @@ async function crearPala() {
     }
     
     try {
-        const response = await fetch("http://localhost:8080/api/palas", {
+        const response = await fetch(`${window.CONFIG.API_URL}/palas`, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -201,7 +201,7 @@ async function crearPala() {
 // Editar pala - Cargar datos en el modal
 async function editarPala(id) {
     try {
-        const response = await fetch(`http://localhost:8080/api/palas/${id}`);
+        const response = await fetch(`${window.CONFIG.API_URL}/palas/${id}`);
         
         if (response.ok) {
             const pala = await response.json();
@@ -251,7 +251,7 @@ async function actualizarPala() {
     }
     
     try {
-        const response = await fetch(`http://localhost:8080/api/palas/${id}`, {
+        const response = await fetch(`${window.CONFIG.API_URL}/palas/${id}`, {
             method: "PUT",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -315,7 +315,7 @@ async function eliminarPala(id) {
     }
 
     try {
-        const response = await fetch(`http://localhost:8080/api/palas/${id}`, {
+        const response = await fetch(`${window.CONFIG.API_URL}/palas/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}`
