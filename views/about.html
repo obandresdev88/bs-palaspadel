@@ -43,6 +43,17 @@
         background-color: aquamarine;
       }
 
+      /* Aumentar tamaño del navbar en escritorio */
+      @media (min-width: 992px) {
+        .navbar-nav .nav-link {
+          font-size: 1.25rem;
+          padding: 0.5rem 1rem;
+        }
+        .dropdown-menu {
+          font-size: 1.1rem;
+        }
+      }
+
       /* Propias del index */
       .c-item {
         height: 65vh;
@@ -198,7 +209,8 @@
       <section>
         <nav aria-label="breadcrumb" class="m-2 d-none d-md-block">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/index.html">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">About us</li>
           </ol>
         </nav>
       </section>
