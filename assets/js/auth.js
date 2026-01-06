@@ -1,11 +1,26 @@
 // Script para manejar la autenticación en todas las páginas
 // Muestra/oculta elementos según el estado de login y maneja el logout
 
+// Función para verificar si un usuario es administrador
+function isAdminFromUser(usuario) {
+    if (!usuario) return false;
+    if (Array.isArray(usuario.roles)) {
+        return usuario.roles.includes('ADMIN') || usuario.roles.includes('ROLE_ADMIN');
+    }
+    if (typeof usuario.role === 'string') {
+        const r = usuario.role.toUpperCase();
+        return r === 'ADMIN' || r === 'ROLE_ADMIN';
+    }
+    if (usuario.isAdmin === true) return true;
+    return false;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const loginIcon = document.getElementById("loginIcon");
     const userDropdown = document.getElementById("userDropdown");
     const nombreLogin = document.getElementById("nombreLogin");
     const logoutBtn = document.getElementById("logoutBtn");
+    const menuInsertarMasiva = document.getElementById("menuInsertarMasiva");
 
     // Verificar si hay un usuario conectado
     // Preferimos sessionStorage para datos de sesión, fallback a localStorage
@@ -23,6 +38,12 @@ document.addEventListener("DOMContentLoaded", function () {
             // Mostrar nombre del usuario (nombre preferido, sino email)
             if (nombreLogin) nombreLogin.textContent = usuario.usunom || usuario.usuema || "Usuario";
             
+            // Controlar visibilidad del menú "Insertar palas masiva" según rol
+            if (menuInsertarMasiva) {
+                const esAdmin = isAdminFromUser(usuario);
+                menuInsertarMasiva.style.display = esAdmin ? "block" : "none";
+            }
+            
             // Redirigir si el usuario está en login.html o registro.html
             const currentPath = window.location.pathname;
             if (currentPath.includes("/login.html") || currentPath.includes("/registro.html")) {
@@ -38,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // No hay usuario conectado
         if (loginIcon) loginIcon.style.display = "block";
         if (userDropdown) userDropdown.style.display = "none";
+        // Ocultar menú de insertar masiva si no hay sesión
+        if (menuInsertarMasiva) menuInsertarMasiva.style.display = "none";
     }
 
     // Manejar el logout
