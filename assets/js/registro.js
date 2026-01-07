@@ -46,9 +46,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         try {
                             sessionStorage.setItem("usuarioConectado", JSON.stringify(userObj));
                         } catch (e) { console.error('No se pudo guardar usuario en sessionStorage', e); }
-                        window.location.href = "/index.html";
+                        redirectToHome();
                     } else {
-                        window.location.href = "/views/login.html";
+                        redirectToLogin();
                     }
                 }, { once: true });
             } else if (response.status === 409) {

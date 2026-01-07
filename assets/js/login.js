@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 // Esperar a que se cierre el modal antes de redirigir
                 document.getElementById('successModal').addEventListener('hidden.bs.modal', function () {                  
-                        window.location.href = "/index.html";                   
+                    redirectToHome();                  
                 }, { once: true });            
             } else if (response.status === 401) {
                 // Credenciales inválidas

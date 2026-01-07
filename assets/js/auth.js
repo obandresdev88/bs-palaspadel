@@ -15,6 +15,17 @@ function isAdminFromUser(usuario) {
     return false;
 }
 
+// Redirecciones conscientes del subpath de GitHub Pages
+function redirectToLogin() {
+    const base = window.location.pathname.includes('/views/') ? './' : 'views/';
+    window.location.href = new URL(base + 'login.html', window.location.href);
+}
+
+function redirectToHome() {
+    const base = window.location.pathname.includes('/views/') ? '../' : './';
+    window.location.href = new URL(base + 'index.html', window.location.href);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const loginIcon = document.getElementById("loginIcon");
     const userDropdown = document.getElementById("userDropdown");
@@ -47,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Redirigir si el usuario está en login.html o registro.html
             const currentPath = window.location.pathname;
             if (currentPath.includes("/login.html") || currentPath.includes("/registro.html")) {
-                window.location.href = "/index.html";
+                redirectToHome();
             }
         } catch (error) {
             console.error("Error al parsear usuario:", error);
@@ -84,11 +95,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 // Redirigir al login después de cerrar el modal
                 successModalElement.addEventListener('hidden.bs.modal', function () {
-                    window.location.href = "/views/login.html";
+                    redirectToLogin();
                 }, { once: true });
             } else {
                 // Si no hay modal, redirigir directamente
-                window.location.href = "/views/login.html";
+                redirectToLogin();
             }
         });
     }

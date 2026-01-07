@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         errorModal.show();
         
         document.getElementById('errorModal').addEventListener('hidden.bs.modal', function () {
-            window.location.href = "/views/login.html";
+            redirectToLogin();
         }, { once: true });
         return;
     }
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 localStorage.removeItem("authToken");
                 sessionStorage.removeItem("usuarioConectado");
                 localStorage.removeItem("usuarioConectado");
-                window.location.href = "/views/login.html";
+                redirectToLogin();
             }, { once: true });
         } else if (response.status === 403) {
             // Sin permisos (no es ADMIN)
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             warningModal.show();
             
             document.getElementById('warningModal').addEventListener('hidden.bs.modal', function () {
-                window.location.href = "/index.html";
+                redirectToHome();
             }, { once: true });
         } else {
             // Otros errores
